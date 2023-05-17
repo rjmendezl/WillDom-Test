@@ -2,6 +2,7 @@ package com.example.creditcardvalidation.models.entities;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
