@@ -14,7 +14,8 @@ public class CardServiceImpl implements CardService {
     private CardRepository cardRepository;
 
     @Override
-    public void register(CardInfo cardInfo) throws Exception{
+    public void register(CardInfo cardInfo) throws Exception {
+
         Card card = new Card();
 
         card.setOwner(cardInfo.getOwner());
