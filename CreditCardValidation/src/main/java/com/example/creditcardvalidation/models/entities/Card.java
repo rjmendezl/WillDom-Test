@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
-@Entity(name = "cards")
+@Entity(name = "credit_cards")
 public class Card {
 
     @Id
@@ -19,10 +19,10 @@ public class Card {
     private String owner;
 
     @Column(name = "number")
-    private Integer number;
+    private String number;
 
     @Column(name = "cvv")
-    private Integer cvv;
+    private String cvv;
 
     @Column(name = "month")
     private Integer month;
@@ -33,8 +33,8 @@ public class Card {
     //Constructors
     public Card(Integer id,
                 String owner,
-                Integer number,
-                Integer cvv,
+                String number,
+                String cvv,
                 Integer month,
                 Integer year)
     {
@@ -66,19 +66,19 @@ public class Card {
         this.owner = owner;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Integer getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(Integer cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 

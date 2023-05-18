@@ -418,34 +418,39 @@
   <div class="card-container">
     <!-- Create a form to enter name, card number, cvv, month and year -->
 
-    <form action="http://localhost:8080/api/creditcard" method="POST" class="form">
+    <form [formGroup]="cardForm" (ngSubmit)="saveCard()" class="form">
 
       <div class="input-container ic1">
-        <input id="firstname" class="input" type="text" placeholder=" " />
+        <input class="input" type="text" placeholder=" " formControlName="owner" />
         <div class="cut"></div>
-        <label for="firstname" class="placeholder">Name on the card</label>
+        <label class="placeholder">Name on the card</label>
       </div>
+
       <div class="input-container ic2">
-        <input id="lastname" class="input" type="text" placeholder=" " />
+        <input class="input" type="text" placeholder=" " formControlName="number" />
         <div class="cut"></div>
-        <label for="lastname" class="placeholder">Card Number</label>
+        <label class="placeholder">Card Number</label>
       </div>
+
       <div class="input-container ic2">
-        <input id="email" class="input" type="text" placeholder=" " />
+        <input class="input" type="text" placeholder=" " formControlName="cvv" />
         <div class="cut cut-short"></div>
-        <label for="email" class="placeholder">CVV</label>
+        <label class="placeholder">CVV</label>
       </div>
+
       <div class="input-container ic2">
-        <input id="email" class="input" type="text" placeholder=" " />
+        <input class="input" type="number" placeholder=" " formControlName="month" />
         <div class="cut cut-short"></div>
-        <label for="email" class="placeholder">Month</label>
+        <label class="placeholder">Month</label>
       </div>
+
       <div class="input-container ic2">
-        <input id="email" class="input" type="text" placeholder=" " />
+        <input class="input" type="number" placeholder=" " formControlName="year" />
         <div class="cut cut-short"></div>
-        <label for="email" class="placeholder">Year</label>
+        <label class="placeholder">Year</label>
       </div>
-      <button type="text" class="submit">Save</button>
+
+      <button type="submit" class="submit" [disabled]="cardForm.invalid">Save</button>
 
     </form>
 
