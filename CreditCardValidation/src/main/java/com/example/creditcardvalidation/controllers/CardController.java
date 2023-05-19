@@ -36,31 +36,6 @@ public class CardController {
     @PostMapping("/register")
     public ResponseEntity<MessageDTO> registerCard (@RequestBody CardInfo cardInfo, BindingResult result){
 
-        //Validation to see wich card is being added
-        String regex = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
-                "(?<mastercard>5[1-5][0-9]{14})|" +
-                "(?<discover>6(?:011|5[0-9]{2})[0-9]{12})|" +
-                "(?<amex>3[47][0-9]{13})|" +
-                "(?<jcb>(?:2131|1800|35[0-9]{3})[0-9]{11}))$";
-
-
-        Pattern pattern = Pattern.compile(regex);
-
-        //Match the card
-        Matcher matcher = pattern.matcher(cardInfo.getNumber());
-
-        //You can de-comment the following code if you want to see if card is valid then verify which group it belong
-
-        /*
-        if(matcher.matches()) {
-            System.out.println(matcher.group("visa"));
-            System.out.println(matcher.group("mastercard"));
-            System.out.println(matcher.group("discover"));
-            System.out.println(matcher.group("amex"));
-            System.out.println(matcher.group("jcb"));
-        }
-        */
-
         try {
             if (result.hasErrors()) {
                 String errors = result.getAllErrors().toString();
@@ -90,21 +65,20 @@ public class CardController {
                             new MessageDTO("Tarjeta registrada"),
                             HttpStatus.CREATED
                     );
-                }else{
-                    return new ResponseEntity<>(
-                            new MessageDTO("Tarjeta no registrada"),
-                            HttpStatus.INTERNAL_SERVER_ERROR
-                    );
                 }
             }
 
+            //If none of the above is true, it means the card is not valid and you will get an error
+            return new ResponseEntity<>(
+                    new MessageDTO("Tarjeta no registrada"),
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
         } catch (Exception e) {
             return new ResponseEntity<>(
                     new MessageDTO("Error interno"),
                     HttpStatus.INTERNAL_SERVER_ERROR
             );
         }
-        return null;
     }
 
     //Luhn's Algorithm
