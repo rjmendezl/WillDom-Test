@@ -1,8 +1,7 @@
 package com.example.creditcardvalidation.models.entities;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -19,9 +18,11 @@ public class Card {
     private String owner;
 
     @Column(name = "number")
+    @Size(min = 15, max = 19)
     private String number;
 
     @Column(name = "cvv")
+    @Size(min = 3, max = 4)
     private String cvv;
 
     @Column(name = "month")
@@ -66,17 +67,13 @@ public class Card {
         this.owner = owner;
     }
 
-    public String getNumber() {
-        return number;
-    }
+    public String getNumber() { return number.replaceAll(" +","").trim(); }
 
     public void setNumber(String number) {
         this.number = number;
     }
 
-    public String getCvv() {
-        return cvv;
-    }
+    public String getCvv() {return cvv.replaceAll(" +","").trim();}
 
     public void setCvv(String cvv) {
         this.cvv = cvv;

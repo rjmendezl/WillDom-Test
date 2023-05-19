@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from './services/card.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-root',
@@ -31,8 +32,11 @@ export class AppComponent implements OnInit {
   }
 
   saveCard(): void {
-    this.cardService.saveCard(this.cardForm.value).subscribe(
-      {error: console.error}
-    )
+    this.cardService.saveCard(this.cardForm.value).subscribe( 
+        result => { swal('Nice!', 'Your card was added successfully!', 'success')}, 
+        error => { swal('Oops!', 'Something went wrong!', 'error')},
+        () => { console.log('completed') }
+      )
+    this.cardForm.reset(); 
   }
 }

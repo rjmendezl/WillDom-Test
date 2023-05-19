@@ -1,9 +1,5 @@
 package com.example.creditcardvalidation.models.dtos;
 
-import jakarta.validation.constraints.NotNull;
-
-import java.util.Date;
-
 public class CardInfo {
 
     private Integer id;
@@ -56,7 +52,7 @@ public class CardInfo {
     }
 
     public String getNumber() {
-        return number;
+        return number.replaceAll(" +","").trim();
     }
 
     public void setNumber(String number) {
@@ -64,7 +60,7 @@ public class CardInfo {
     }
 
     public String getCvv() {
-        return cvv;
+        return cvv.replaceAll(" +","").trim();
     }
 
     public void setCvv(String cvv) {
